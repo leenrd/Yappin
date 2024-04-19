@@ -1,11 +1,8 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
-export type Tab = {
-  label: string;
-  id: string;
-};
+export type Tab = { label: string; id: string; children: ReactNode };
 
-const useTabs = ({
+export function useTabs({
   tabs,
   initialTabId,
   onChange,
@@ -13,11 +10,12 @@ const useTabs = ({
   tabs: Tab[];
   initialTabId: string;
   onChange?: (id: string) => void;
-}) => {
+}) {
   const [[selectedTabIndex, direction], setSelectedTab] = useState(() => {
     const indexOfInitialTab = tabs.findIndex((tab) => tab.id === initialTabId);
     return [indexOfInitialTab === -1 ? 0 : indexOfInitialTab, 0];
   });
+
   return {
     tabProps: {
       tabs,
@@ -31,6 +29,4 @@ const useTabs = ({
       selectedTabIndex,
     },
   };
-};
-
-export default useTabs;
+}

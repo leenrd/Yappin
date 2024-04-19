@@ -8,7 +8,7 @@ import { SquareArrowOutUpRight } from "lucide-react";
 
 const BlogItem = () => {
   return (
-    <Card>
+    <Card className="hover:border-accent-foreground transition-colors hover:shadow-lg cursor-pointer">
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>Card Title</CardTitle>
