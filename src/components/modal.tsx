@@ -9,6 +9,7 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { KeyRound } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Modal = () => {
   return (
@@ -34,9 +35,11 @@ const Modal = () => {
         <div className="flex items-center space-x-2">
           <div className="flex flex-1 gap-2">
             <Input id="link" placeholder="Enter the password" type="password" />
-            <Button type="submit" size="sm" className="px-3">
-              <KeyRound strokeWidth={2} />
-            </Button>
+            <Link to="/editor">
+              <Button type="submit" size="sm" className="px-3">
+                <KeyRound strokeWidth={2} />
+              </Button>
+            </Link>
           </div>
         </div>
       </DialogContent>
