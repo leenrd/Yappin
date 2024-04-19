@@ -9,6 +9,7 @@ import About from "@/components/outlets/about";
 import Blogs from "@/components/outlets/blogs";
 import Play from "@/components/outlets/play";
 import Docs from "@/components/outlets/docs";
+import Pins from "@/components/outlets/pins";
 
 const Home = () => {
   const [hookProps] = useState({
@@ -33,17 +34,22 @@ const Home = () => {
         children: <Docs />,
         id: "Docs",
       },
+      {
+        label: "Pins",
+        children: <Pins />,
+        id: "Pins",
+      },
     ],
     initialTabId: "Matches",
   });
   const framer = useTabs(hookProps);
 
   return (
-    <MaxWidthShell className="w-[800px]">
+    <MaxWidthShell className="md:w-[800px]">
       <Nav />
       <Header />
       <Framer.Tabs {...framer.tabProps} />
-      <main className="flex flex-col gap-3 mx-1">
+      <main className="flex flex-col gap-3 mx-2">
         <div className="pt-10">{framer.selectedTab.children}</div>
       </main>
       <br />

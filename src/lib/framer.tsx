@@ -51,7 +51,7 @@ const Tabs = ({
           <motion.button
             key={i}
             className={classNames(
-              "text-lg relative rounded-md flex items-center h-10 px-4 z-20 bg-transparent cursor-pointer select-none transition-colors hover:text-foreground mb-0.5",
+              "text-base font-geist font-semibold relative rounded-md flex items-center h-10 px-4 z-20 bg-transparent cursor-pointer select-none transition-colors hover:text-foreground mb-0.5",
               {
                 "text-foreground/60": !isActive, // Default color for non-active tabs
                 "text-foreground/90": isActive, // Color for active tabs
@@ -107,7 +107,7 @@ const Tabs = ({
       {selectedRect && navRect && (
         <motion.div
           className={
-            "absolute z-10 bottom-0 left-0.5 h-[3px] bg-zinc-700 dark:bg-zinc-200"
+            "absolute z-10 bottom-0 left-0.5 h-[3px] rounded-full bg-zinc-700 dark:bg-zinc-200"
           }
           initial={false}
           animate={{

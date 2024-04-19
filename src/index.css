@@ -52,6 +52,7 @@
 @layer base {
   * {
     @apply border-border;
+    /* @apply border-2 border-destructive; */
   }
   body {
     @apply bg-background text-foreground;
