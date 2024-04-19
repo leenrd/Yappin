@@ -9,10 +9,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Bird, Rabbit, Share, Turtle, MessageCircleOff } from "lucide-react";
 import Editor from "./editor";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 const EditorConfig = () => {
+  const zodSchema = z.object({
+    type: z.string().optional(),
+    title: z.string().min(5, "Title too short").max(20).trim(),
+    content: z.string().min(30, "Content too short").trim(),
+  });
+
+  const form = useForm<z.infer<typeof zodSchema>>({
+    resolver: zodResolver(zodSchema),
+    mode: "onChange",
+  });
   return (
     <div className="grid h-screen w-full">
       <div className="flex flex-col">
@@ -35,12 +49,33 @@ const EditorConfig = () => {
         </header>
         <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-3">
           <Config />
-          <form>
-            <fieldset className="w-full rounded-lg border p-4">
+          <div className="col-span-2">
+            {/* menu */}
+            <Form {...form}>
               <legend className="text-sm font-medium">Editor</legend>
-              <Editor />
-            </fieldset>
-          </form>
+              <fieldset className="w-full rounded-lg border p-4">
+                <FormField
+                  control={form.control}
+                  name="content"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        {/* <Input placeholder="Content goes here..." {...field} /> */}
+                        <Editor
+                          content={field.name}
+                          onChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <p className="text-sm text-muted-foreground mt-2">
+                  Your content gets pushed upstream every onChange.
+                </p>
+              </fieldset>
+            </Form>
+          </div>
         </main>
       </div>
     </div>
