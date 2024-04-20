@@ -22,10 +22,11 @@ const Editor = ({
       onChange(editor.getHTML());
     },
   });
+
   return (
-    <div className="bg-secondary rounded-md">
+    <div className=" rounded-md">
       <EditorToolBox editor={editor} />
-      <div className="prose prose-sm">
+      <div className="prose min-w-full">
         <EditorContent editor={editor} />
       </div>
     </div>
