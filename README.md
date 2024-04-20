@@ -3,7 +3,7 @@
 
 # Yappin
 
-Personal blog app, a sand box for my thoughts and ideas.
+Personal blog app, a sandbox for my thoughts and ideas.
 
 Techstack's gonna be: React, TS, Shadcn, Tiptap, etc.. still working on the backend ( •̀ ω •́ )✧
 
