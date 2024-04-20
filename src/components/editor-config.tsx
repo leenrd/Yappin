@@ -18,8 +18,8 @@ import * as z from "zod";
 
 const EditorConfig = () => {
   const zodSchema = z.object({
-    type: z.string().optional(),
     title: z.string().min(5, "Title too short").max(20).trim(),
+    description: z.string().min(10, "Description too short").max(50).trim(),
     content: z.string().min(30, "Content too short").trim(),
   });
 
@@ -50,17 +50,15 @@ const EditorConfig = () => {
         <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-3">
           <Config />
           <div className="col-span-2">
-            {/* menu */}
             <Form {...form}>
-              <legend className="text-sm font-medium">Editor</legend>
               <fieldset className="w-full rounded-lg border p-4">
+                <legend className="text-sm font-medium px-1">Editor</legend>
                 <FormField
                   control={form.control}
                   name="content"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        {/* <Input placeholder="Content goes here..." {...field} /> */}
                         <Editor
                           content={field.name}
                           onChange={field.onChange}

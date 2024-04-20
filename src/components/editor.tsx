@@ -14,7 +14,7 @@ const Editor = ({
     extensions: [StarterKit.configure()],
     editorProps: {
       attributes: {
-        class: "rounded-md min-h-[200px] bg-background p-4",
+        class: "rounded-md min-h-[450px] bg-background p-4",
       },
     },
     content: content,
@@ -25,7 +25,9 @@ const Editor = ({
   return (
     <div className="bg-secondary rounded-md">
       <EditorToolBox editor={editor} />
-      <EditorContent editor={editor} />
+      <div className="prose prose-sm">
+        <EditorContent editor={editor} />
+      </div>
     </div>
   );
 };
