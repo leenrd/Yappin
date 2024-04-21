@@ -14,7 +14,7 @@ const Editor = ({
     extensions: [StarterKit.configure()],
     editorProps: {
       attributes: {
-        class: "rounded-md min-h-[450px] bg-background p-4",
+        class: "rounded-md py-4 min-h-[450px] bg-background ",
       },
     },
     content: content,
@@ -26,7 +26,7 @@ const Editor = ({
   return (
     <div className=" rounded-md">
       <EditorToolBox editor={editor} />
-      <div className="prose min-w-full">
+      <div className="prose prose-h1:*:text-foreground prose-h2:*:text-foreground prose-h3:*:text-foreground prose-strong:*:text-foreground min-w-full text-foreground">
         <EditorContent editor={editor} />
       </div>
     </div>

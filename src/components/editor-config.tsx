@@ -17,16 +17,34 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const EditorConfig = () => {
-  const zodSchema = z.object({
-    title: z.string().min(5, "Title too short").max(20).trim(),
-    description: z.string().min(10, "Description too short").max(50).trim(),
+  const contentSchema = z.object({
     content: z.string().min(30, "Content too short").trim(),
+    name: z.string().min(10),
   });
 
-  const form = useForm<z.infer<typeof zodSchema>>({
-    resolver: zodResolver(zodSchema),
+  const configSchema = z.object({
+    title: z
+      .string()
+      .min(5, "Title too short")
+      .max(30, "Title too long")
+      .trim(),
+    description: z
+      .string()
+      .min(10, "Description too short")
+      .max(40, "Description too long")
+      .trim(),
+  });
+
+  const ContentForm = useForm<z.infer<typeof contentSchema>>({
+    resolver: zodResolver(contentSchema),
     mode: "onChange",
   });
+
+  const ConfigForm = useForm<z.infer<typeof configSchema>>({
+    resolver: zodResolver(configSchema),
+    mode: "onChange",
+  });
+
   return (
     <div className="grid h-screen w-full">
       <div className="flex flex-col">
@@ -50,12 +68,12 @@ const EditorConfig = () => {
         <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-3">
           <Config />
           <div className="col-span-2">
-            <Form {...form}>
+            <Form {...ContentForm}>
               <fieldset className="w-full rounded-lg border p-4">
                 <legend className="text-sm font-medium px-1">Editor</legend>
                 <FormField
-                  control={form.control}
-                  name="content"
+                  control={ContentForm.control}
+                  name="Start typing..."
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
@@ -85,10 +103,10 @@ export default EditorConfig;
 const Config = () => {
   return (
     <div
-      className="relative hidden flex-col items-start gap-8 md:flex"
+      className="relative flex-col items-start gap-8 md:flex"
       x-chunk="dashboard-03-chunk-0"
     >
-      <form className="grid w-full items-start gap-6">
+      <form className="grid w-full items-start gap-6 sticky top-0 ">
         <fieldset className="grid gap-6 rounded-lg border p-4">
           <legend className="-ml-1 px-1 text-sm font-medium">
             Paper Config
